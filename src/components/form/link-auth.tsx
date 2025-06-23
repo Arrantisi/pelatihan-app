@@ -6,8 +6,6 @@ import { usePathname } from "next/navigation";
 const AuthLink = () => {
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <div className="text-center text-sm">
       Don&apos;t have an account?{" "}
