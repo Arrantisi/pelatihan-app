@@ -18,6 +18,7 @@ import { authClient } from "@/lib/auth-client";
 import { useBoolean } from "@/hooks/use-boolean";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -57,10 +58,7 @@ const SignInForm = () => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="my-8 space-y-4 w-full max-w-sm"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="my-8 w-full max-w-sm">
         <FormField
           control={control}
           name="email"
@@ -73,32 +71,39 @@ const SignInForm = () => {
             </FormItem>
           )}
         />
-        <FormField
-          control={control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <div className="relative">
-                  <Input
-                    placeholder="password"
-                    type={showPassword ? "text" : "password"}
-                    {...field}
-                  />
-                  <span
-                    className="absolute top-1.5 right-1.5 text-muted-foreground"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? <IconEye /> : <IconEyeOff />}
-                  </span>
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <Button type="submit" className="w-full" disabled={value}>
+        <div className="flex items-end flex-col">
+          <Link
+            href={"/forgot-password"}
+            className="hover:underline underline-offset-2 text-muted-foreground text-sm mb-1"
+          >
+            forgot password
+          </Link>
+          <FormField
+            control={control}
+            name="password"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <div className="relative">
+                    <Input
+                      placeholder="password"
+                      type={showPassword ? "text" : "password"}
+                      {...field}
+                    />
+                    <span
+                      className="absolute top-1.5 right-1.5 text-muted-foreground"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <IconEye /> : <IconEyeOff />}
+                    </span>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <Button type="submit" className="w-full mt-4" disabled={value}>
           {value ? <Loader2 className="animate-spin" /> : "Login"}
         </Button>
       </form>

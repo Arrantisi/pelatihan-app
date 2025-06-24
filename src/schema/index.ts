@@ -38,3 +38,12 @@ export const SchangePassword = z
     path: ["confirmPassword"],
   });
 export type TchagePassword = z.infer<typeof SchangePassword>;
+
+//?? ========================================== FORGOT PASSWORD ==========================================
+export const SotpForgotPassword = z.object({
+  email: z.string().email(),
+  otp: z.string(),
+  password: z.string().min(8).max(50),
+});
+
+export type TotpForgotPassword = z.infer<typeof SotpForgotPassword>;
