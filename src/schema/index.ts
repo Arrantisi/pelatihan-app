@@ -16,10 +16,10 @@ export const SsignIn = z.object({
 export type TsignIn = z.infer<typeof SsignIn>;
 
 //?? ========================================== UPDATE USER ==========================================
-export const SchangeEmail = z.object({
+export const Semail = z.object({
   email: z.string().email(),
 });
-export type TchageEmail = z.infer<typeof SchangeEmail>;
+export type Temail = z.infer<typeof Semail>;
 
 export const SchangeName = z.object({
   firstName: z.string().min(2).max(50),

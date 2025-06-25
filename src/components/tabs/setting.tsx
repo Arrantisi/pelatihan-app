@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import FormChangeName from "../form/change-name";
 import FormChangeEmail from "../form/change-email";
 import FormUpdatePassword from "../form/update-password";
+import ImageProfileForm from "../form/image-profile";
 
 const TabSetting = () => {
   return (
@@ -36,10 +37,8 @@ const TabSetting = () => {
       <TabsContent value="tab-2" className="w-full">
         <FormUpdatePassword />
       </TabsContent>
-      <TabsContent value="tab-3">
-        <p className="text-muted-foreground p-4 text-center text-xs">
-          Content for Tab 3
-        </p>
+      <TabsContent value="tab-3" className="w-full">
+        <ImageProfileForm />
       </TabsContent>
     </Tabs>
   );

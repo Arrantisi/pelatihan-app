@@ -2,7 +2,7 @@
 
 import { useBoolean } from "@/hooks/use-boolean";
 import { authClient } from "@/lib/auth-client";
-import { TchageEmail, SchangeEmail } from "@/schema";
+import { Temail, Semail } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -23,15 +23,15 @@ const ForgotPassword = () => {
   const { onTrue, onFalse, value } = useBoolean();
   const route = useRouter();
 
-  const form = useForm<TchageEmail>({
-    resolver: zodResolver(SchangeEmail),
+  const form = useForm<Temail>({
+    resolver: zodResolver(Semail),
     defaultValues: {
       email: "",
     },
   });
   const { control, handleSubmit } = form;
 
-  const onSubmit = async (values: TchageEmail) => {
+  const onSubmit = async (values: Temail) => {
     await authClient.emailOtp.sendVerificationOtp({
       email: values.email,
       type: "forget-password",

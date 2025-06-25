@@ -1,20 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useId } from "react";
 import { OTPInput, SlotProps } from "input-otp";
 
 import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
+import { ControllerRenderProps } from "react-hook-form";
 
-export default function Component() {
-  const id = useId();
+type InputOtpProps = {
+  maxLength?: number;
+  field: ControllerRenderProps<any, any>;
+};
+
+export default function InputOtp({ maxLength = 6, field }: InputOtpProps) {
   return (
     <div className="*:not-first:mt-2">
-      <Label htmlFor={id}>OTP input (spaced)</Label>
       <OTPInput
-        id={id}
         containerClassName="flex items-center gap-3 has-disabled:opacity-50"
-        maxLength={4}
+        maxLength={maxLength}
         render={({ slots }) => (
           <div className="flex gap-2">
             {slots.map((slot, idx) => (
@@ -22,27 +24,13 @@ export default function Component() {
             ))}
           </div>
         )}
+        {...field}
       />
-      <p
-        className="text-muted-foreground mt-2 text-xs"
-        role="region"
-        aria-live="polite"
-      >
-        Built with{" "}
-        <a
-          className="hover:text-foreground underline"
-          href="https://github.com/guilhermerodz/input-otp"
-          target="_blank"
-          rel="noopener nofollow"
-        >
-          Input OTP
-        </a>
-      </p>
     </div>
   );
 }
 
-export function Slot(props: SlotProps) {
+function Slot(props: SlotProps) {
   return (
     <div
       className={cn(
